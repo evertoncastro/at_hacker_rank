@@ -2,32 +2,16 @@
 
 
 def minimumSwaps(arr):
-    swap = 0
+    numSwaps = 0
     i = 0
-    while i < len(arr):
-        dif = 0
-        if i+1 > len(arr)-1:
-            pass
-        elif arr[i] > arr[i+1]:
-            dif += 1
-            if i + 2 > len(arr) - 1:
-                pass
-            elif arr[i] > arr[i+2]:
-                if i + 3 > len(arr) - 1:
-                    pass
-                elif arr[i] > arr[i+3]:
-                    dif += 1
-        if dif > 0:
-            cur = arr[i]
-            arr[i] = arr[i+dif]
-            arr[i+dif] = cur
-            swap += 1
-            i = 0
-            continue
-        i += 1
-        continue
-    print(arr)
-    return swap
+    while(i < len(arr)-1):
+        if arr[i] != i+1:
+            tmp = arr[i]
+            arr[i], arr[tmp-1] = arr[tmp-1], arr[i]
+            numSwaps += 1
+        else:
+            i += 1
+    return numSwaps
 
 
 if __name__ == '__main__':
@@ -37,3 +21,6 @@ if __name__ == '__main__':
     result = minimumSwaps(arr)
     print(result)
 
+# You are given an unordered array consisting of consecutive integers  [1, 2, 3, ..., n] without any duplicates. You are allowed to swap any two elements. You need to find the minimum number of swaps required to sort the array in ascending order.
+
+# For example, given the array  we perform the following steps:
